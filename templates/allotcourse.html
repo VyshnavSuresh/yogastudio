@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-FgnoXNqdJpWUC0jOBnhiwDLYg+t84xTmT7I/0jUQQCE6U9tnqqluA7miDfBwOdV7" crossorigin="anonymous">
+
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+      <script src="{% static 'js/sample_validations.js' %}"></script>
+    <style type="text/css">
+            table{
+
+            width: 90%;
+            padding: 12px;
+            border-radius: 4px;
+            resize: vertical;
+            color: black;
+            font-style: bold;
+            font-family:Calibri;
+
+            font-size: 20px;
+        }
+        th{
+            width: 20%;
+            padding: 12px;
+            border-radius: 4px;
+            resize: vertical;
+            color: black;
+            font-style: bold;
+            font-family:Calibri;
+            font-size: 20px;
+        }
+        tr{
+          width: 90%;
+            padding: 12px;
+            border-radius: 4px;
+            resize: vertical;
+            color: black;
+            font-style: bold;
+            font-family:Calibri;
+            font-size: 20px;
+        }
+        td{
+          width: 90%;
+            padding: 12px;
+            border-radius: 4px;
+            resize: vertical;
+            color: black;
+            font-style: bold;
+            font-family:Calibri;
+            font-size: 20px;
+
+        }
+        textarea{
+            width: 40%;
+            padding: 12px;
+            border-radius: 4px;
+            resize: vertical;
+            color: black;
+            font-style: bold;
+            font-family:Calibri;
+            font-size: 20px;
+
+        }
+        input[type=text]{
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+       select{
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        input[type=password]{
+            width:40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+
+        }
+        input[type=email]{
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+
+        }
+
+        input[type=submit]
+        {
+            width: 20%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .table-card {
+
+       width:70%;
+       margin: 0 auto; /* Added */
+float: none; /* Added */
+margin-bottom: 10px; /* Added */
+margin-top:120px;
+
+
+      background: white;
+      border-radius: 2px;
+
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .table-card .header {
+      line-height: 64px;
+      padding-left: 24px;
+      padding-right: 14px;
+    }
+
+    .table-card .header .title {
+      font-size: 20px;
+    }
+
+    .table-card .header .actions {
+      float: right;
+    }
+
+    .table-card .header .actions a {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 24px;
+      padding-left: 24px;
+    }
+
+    .table-card .table {
+      padding: 0;
+      margin: 0;
+    }
+
+    .table-card .table table,
+    .table-card .table table tr,
+    .table-card .table table > thead > tr > th,
+    .table-card .table table > tbody > tr > td {
+      padding: 0;
+      margin: 0;
+    }
+
+    .table-card .table table > thead > tr > th {
+      line-height: 56px;
+      color: rgba(0, 0, 0, 0.54)
+    }
+
+    .table-card .table table > tbody > tr > td {
+      line-height: 48px;
+      word-wrap: break-word;
+    }
+
+    .table-card .table table > thead > tr > th:first-child,
+    .table-card .table table > tbody > tr > td:first-child {
+      padding-left: 50px;
+    }
+
+    .table-card .table table > thead > tr > th:last-child,
+    .table-card .table table > tbody > tr > td:last-child {
+      padding-right: 5px;
+    }
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+}
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+a.live-dot::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 5px;
+
+}
+
+
+    </style>
+
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+<li><a  class="live-dot" style="color:green;">{{course.course}}</a></li>
+
+                    <li class="profile-pic">
+                            <img src="{{ins.instructor_image.url}}">
+                        </li>
+                        <li>
+                        <a style="color: green;"> {{ins.first_name}}</a></li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu" >
+
+                    <li>
+                        <a style="color: green;" href= "{% url 'yogaapp:instructordashboard' %}" ><i class="fa fa-desktop "></i>Instructor Dashboard<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+<li>
+                                <a href= "{% url 'yogaapp:instructorviewprofile' %}" style="color: green;">Profile</a>
+                                <a href= "{% url 'yogaapp:instructorchangepassword' %}" style="color: green;">Change Password</a>
+                            </li></ul>
+                    </li>
+
+
+                                       <li>
+                    <a href= "{% url 'yogaapp:instructorallotedstudents' %}" style="color: green;"><i class="fa fa-sitemap "></i>Course Details</a>
+
+                    </li>
+
+
+
+
+
+
+                        <li><a href="{% url 'schedule:allotclass' c_slug=course.slug %}" style="color: green;"><i class="fa fa-clock-o "></i>Schedule a Class</a></li>
+                                                <li><a href="{% url 'schedule:coursedetails' c_slug=course.slug %}" style="color: green;"><i class="fa fa-dashboard "></i>View Live Session</a></li>
+
+<li>
+                        <a href="{% url 'schedule:course_dates' course.id %}" style="color: green;"><i class="fa fa-desktop "></i>Attendance Records </a>
+                    </li>
+
+
+
+                      <li>
+                        <a href="{% url 'yogaapp:addvideo' %}" style="color: green;"><i class="fa fa-desktop "></i>Add Videos </a>
+                    </li>
+                     <li>
+                        <a href="{% url 'posecollection:capture_pose' %}" style="color: green;"><i class="fa fa-camera"></i>Add Pose</a>
+                    </li>
+                     <li>
+                        <a href="{% url 'yogaapp:instructorviewfeedback' %}" style="color: green;"><i class="fa fa-edit "></i>Feedbacks </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+  <h1>Allot Class to {{ course.course }}</h1><hr>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Allot Class">
+  </form>
+
+                    </div>
+                </div>
+                  <hr />
+
+                 <!-- /. ROW  -->
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+</html>

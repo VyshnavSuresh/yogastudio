@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-FgnoXNqdJpWUC0jOBnhiwDLYg+t84xTmT7I/0jUQQCE6U9tnqqluA7miDfBwOdV7" crossorigin="anonymous">
+
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+      <script src="{% static 'js/sample_validations.js' %}"></script>
+    <style type="text/css">
+        table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+a {
+  color: blue;
+}
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ .add-button {
+        margin-left:350px;
+        margin-top: 20px;
+    }
+
+    .add-button a {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .add-button a span {
+        margin-right: 5px;
+    }
+a.live-dot::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 5px;
+
+}
+
+    </style>
+
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+
+
+                </div>
+                <div class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+<li><a  class="live-dot" style="color:green;">{{course.course}}</a></li>
+
+                    <li class="profile-pic">
+                            <img src="{{ins.instructor_image.url}}">
+
+                        </li>
+
+                        <li>
+                        <a style="color: green;"> {{ins.first_name}}</a></li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu" >
+
+                    <li>
+                        <a style="color: green;" href= "{% url 'yogaapp:instructordashboard' %}"><i class="fa fa-desktop "></i>Instructor Dashboard<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+<li>
+                                <a href= "{% url 'yogaapp:instructorviewprofile' %}" style="color: green;">Profile</a>
+                                <a href= "{% url 'yogaapp:instructorchangepassword' %}" style="color: green;">Change Password</a>
+                            </li></ul>
+                    </li>
+
+
+
+
+                    <li>
+                    <a href= "{% url 'yogaapp:instructorallotedstudents' %}" style="color: green;"><i class="fa fa-sitemap "></i>Course Details</a>
+
+                    </li>
+
+
+                        <li><a href="{% url 'schedule:allotclass' c_slug=course.slug %}" style="color: green;"><i class="fa fa-clock-o "></i>Schedule a Class</a></li>
+                                                <li><a href="{% url 'schedule:coursedetails' c_slug=course.slug %}" style="color: green;"><i class="fa fa-dashboard "></i>View Live Session</a></li>
+
+<li>
+                        <a href="{% url 'schedule:course_dates' course.id %}" style="color: green;"><i class="fa fa-desktop "></i>Attendance Records </a>
+                    </li>
+
+
+
+                      <li>
+                        <a href="{% url 'yogaapp:addvideo' %}" style="color: green;"><i class="fa fa-desktop "></i>Add Videos </a>
+                    </li>
+                     <li>
+                        <a href="{% url 'posecollection:capture_pose' %}" style="color: green;"><i class="fa fa-camera"></i>Add Pose</a>
+                    </li>
+                     <li>
+                        <a href="{% url 'yogaapp:instructorviewfeedback' %}" style="color: green;"><i class="fa fa-edit "></i>Feedbacks </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="{{ message.tags }}" style="color: black; padding: 10px; margin-bottom: 10px;">
+        {% if message.tags %}
+          {{ message }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    setTimeout(function() {
+      var messages = document.querySelector('.messages');
+      messages.style.display = 'none';
+    }, 5000); // hide messages after 5 seconds
+  </script>
+{% endif %}
+<h1 style="display:inline-block;">&nbsp;Allotted Classes for {{ course.course }}</h1>
+<span class="add-button">
+  <a href="{% url 'schedule:allotclass' c_slug=course.slug %}">
+    <span>+</span> Add Class
+  </a>
+</span>
+<hr>
+{% if class_schedules %}
+    <table>
+        <thead>
+            <tr>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Meeting URL</th>
+                <th>Status</th>
+                <th>Attendance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for class_schedule in class_schedules %}
+                <tr>
+                    <td>{{ class_schedule.start_time }}</td>
+                    <td>{{ class_schedule.end_time }}</td>
+                    <td><a href="{{ class_schedule.meeting_url }}">{{ class_schedule.meeting_url }}</a></td>
+                    <td>{{ class_schedule.status }}</td>
+                    <td>
+                        {% if class_schedule.attendance_marked %}
+                            <a href="{% url 'schedule:view_attendance' class_schedule.id %}">View Students</a>
+                        {% else %}
+                            <a href="{% url 'schedule:mark_attendance' class_schedule.id %}">Mark Attendance</a>
+                        {% endif %}
+                    </td>
+                    {% if class_schedule.status == 'Upcoming' %}
+                        <td>
+                            <a href="{% url 'schedule:deleteclass' class_schedule.id %}" class="btn btn-danger">Delete Class</a>
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No classes have been allotted yet.</p>
+{% endif %}
+
+
+
+
+
+                    </div>
+                </div>
+                  <hr />
+    </div>
+
+            </div>
+       </div>
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+</html>

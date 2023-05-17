@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        table {
+            width: 60%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type=submit] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button[type=submit]:hover {
+            background-color: #444;
+        }
+
+        option[value=PRESENT] {
+            color: green;
+        }
+
+        option[value=ABSENT] {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Mark Attendance - {{ class_schedule.course.course }} - {{ class_schedule.start_time|date:"F j, Y H:i" }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in enrolled_students %}
+                <tr>
+                    <td>{{ student.first_name }} {{ student.last_name }}:</td>
+                    <td>
+                        <select name="{{ student.user_id }}">
+                            <option value="PRESENT">Present</option>
+                            <option value="ABSENT" selected>Absent</option>
+                        </select>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div style="margin-top: 20px;">
+            <button type="submit">Save Attendance</button>
+        </div>
+    </form>
+</body>
+</html>

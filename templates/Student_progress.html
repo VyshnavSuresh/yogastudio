@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+    <script src="{% static 'js/sample_validations.js' %}"></script>
+
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            {% for i in ins %}
+                            <a style="color: green;">Welcome...{{i.firstname}}</a>
+                            {% endfor %}</li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu" >
+
+                    <li>
+                        <a style="color: green;" href="index.html"><i class="fa fa-desktop "></i>Instructor Dashboard<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+<li>
+                                <a href= "{% url 'yogaapp:instructorviewprofile' %}" style="color: green;">Profile</a>
+                                <a href= "{% url 'yogaapp:instructorchangepassword' %}" style="color: green;">Change Password</a>
+
+                            </li></ul>
+                    </li>
+
+
+<!--                    <li>-->
+<!--                        <a href="#" style="color: green;"><i class="fa fa-edit "></i>Schedule</a>-->
+
+<!--                    </li>-->
+
+                    <li>
+                        <a href="#" style="color: green;"><i class="fa fa-sitemap "></i>Courses<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+<!--                            <li>-->
+<!--                                <a href="#" style="color: green;">Daily Asanas</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="#" style="color: green;">Asana Library</a>-->
+<!--                            </li>-->
+<!--                             <li>-->
+<!--                                 <a href="#" style="color: green;">Live Classes</a></li>-->
+
+<!--                    </li>-->
+
+                            <li>
+                                <a href= "{% url 'yogaapp:instructorallotedstudents' %}" style="color: green;">Allotted Students</a>
+                            </li>
+
+<!--                             <li>-->
+<!--                                <a href="#" style="color: green;">Enrolled Students</a>-->
+<!--                            </li>-->
+
+                        </ul>
+                    </li>
+<!--                    <li>-->
+<!--                        <a href="#" style="color: green;"><i class="fa fa-bar-chart-o"></i>Certificates</a>-->
+<!--                    </li>-->
+
+                    <li>
+                        <a href="{% url 'yogaapp:instructorviewfeedback' %}" style="color: green;"><i class="fa fa-edit "></i>Feedbacks </a>
+                    </li>
+
+                      <li>
+                        <a href="{% url 'yogaapp:addvideo' %}" style="color: green;">Add Videos </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+<h2>Alloted Students</h2>
+<hr/>
+<div>
+
+    <table  align="center" border="1" style="width:100%;height:100%;font-family: Garamond, serif;border-collapse: collapse;color:black;">
+        <br>
+        <br>
+        <tr>
+            <th style="text-align:center;font-size:19px;">Date</th>
+            <th style="text-align:center;font-size:19px;">Student</th>
+            <th style="text-align:center;font-size:19px;">Video</th>
+            <th style="text-align:center;font-size:19px;">Progress</th>
+<!--            <th style="text-align:center;">Current Course Status</th>-->
+
+        </tr>
+
+<div class="class-des">
+    {% for i in students %}
+    <tr>
+    <td align="center"><h4>{{i.day}}</h4></td>
+    <td align="center"><h4>{{i.user.first_name}}&nbsp;{{i.user.last_name}}</h4></td>
+    <td align="center"><h4>{{i.video.title}}</h4></td>
+    <td align="center"><h4>{{i.progress}}%</h4></td>
+<!--    <td align="center"><h4>{{i.course_status}}</h4></td>-->
+    </tr>
+
+{% endfor %}
+</div>
+    </table>
+
+</div>
+
+</div>
+                    </div>
+                </div>
+                  <hr />
+
+                 <!-- /. ROW  -->
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+</html>

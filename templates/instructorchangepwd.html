@@ -1,0 +1,115 @@
+{% extends 'instructordashboard.html' %}
+{% block content %}
+<style>
+.password-form {
+
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.password-form h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.password-form hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.password-form table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.password-form th, .password-form td {
+    padding: 10px;
+    text-align: left;
+}
+
+.password-form th {
+    width: 150px;
+    font-weight: bold;
+}
+
+.password-form td input {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.password-form .error-message {
+    font-size: 12px;
+    color: #ff0000;
+}
+
+.password-form .submit-button {
+    text-align: center;
+}
+
+.password-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.password-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+</style>
+
+
+<div class="password-form">
+    <h2>Change password</h2>
+    <hr>
+    <form action="" onsubmit="return passwordValidation() cpasswordValidation()" id="addcus" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Old Password:</th>
+                <td><input type="password" name="old_password"  placeholder="Enter Password" required></td>
+            </tr>
+            <tr>
+                <th>New Password:</th>
+                <td>
+                    <input type="password" id="pass1" name="new_password" placeholder="Enter New Password" onkeyup="passwordValidation(this)" required>
+                    <br>
+                    <span id="pa1" class="error-message"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>Confirm Password:</th>
+                <td>
+                    <input type="password" id="pass2" name="confirm_password" placeholder="Re-Enter Password" onkeyup="cpasswordValidation(this)" required>
+                    <br>
+                    <span id="pa2" class="error-message"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="submit-button">
+                    <input type="submit" name="submit" value="Change">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{% endblock %}
+

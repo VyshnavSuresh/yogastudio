@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <title>YOGASTUDIO</title>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+    <style>
+    h2 {
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 0 auto;
+        width: 80%;
+        margin-bottom: 50px;
+    }
+
+    #addcus {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #addcus table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #addcus th {
+        font-weight: bold;
+        padding: 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    #addcus td {
+        padding: 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    #addcus select, #addcus textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    #addcus input[type="submit"] {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    #addcus input[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    background-color: transparent;
+    color: green;
+}
+    </style>
+
+</head>
+<body>
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'yogaapp:studentdashboard' %}" class="btn btn-link" ><i class="fa fa-arrow-left"></i>Back</a></li>
+
+                       <li class="profile-pic">
+                            <img src="{{user.student_image.url}}">
+
+                        </li>
+                       <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: green;">{{ user.first_name }} <span class="caret"></span></a>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="{% url 'yogaapp:studentviewprofile' %}" style="color: green;">Profile</a></li>
+    <li><a href="{% url 'yogaapp:studentchangepassword' %}" style="color: green;">Change Password</a></li>
+  </ul>
+</li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+
+
+        <!-- /. NAV SIDE  -->
+
+                    <div class="col-md-12">
+
+{% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="{{ message.tags }}" style="color: black; padding: 10px; margin-bottom: 10px;">
+        {% if message.tags %}
+          {{ message }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    setTimeout(function() {
+      var messages = document.querySelector('.messages');
+      messages.style.display = 'none';
+    }, 5000); // hide messages after 5 seconds
+  </script>
+{% endif %}
+
+
+<h2>Feedback</h2>
+<hr/>
+  <form id="addcus" method="post" action="" enctype="multipart/form-data">
+
+         {% csrf_token %}
+
+
+
+           <table align="center">
+
+            <tr class="tr">
+                <th>Select Course</th>
+                <td class="td">
+                    <select name='course'>
+                        <option disabled selected>Select</option>
+                        {% for i in courses %}
+                             <option value="{{i.id}}">{{i.course}}</option>
+                        {% endfor %}
+
+                    </select>
+
+                </td>
+            </tr>
+
+
+
+                <tr class="tr">
+               <th>Feedback</th>
+               <td class="td">
+               <textarea id="feedback" style="border: 1px solid #ccc;height:150px" name="feedback" required></textarea>
+               </td>
+               </tr>
+
+
+            <tr class="tr">
+            <td colspan="2"  class="td">
+                  <input type="submit" style="margin-left:400px;" name="submit"   value="SEND FEEDBACK" class="btn btn-primary">
+
+            </td>
+            </tr>
+
+           </table>
+
+  </form> </div>
+
+
+
+</div>
+
+<!--</div>-->
+
+
+
+
+
+                    </div>
+                </div>
+                  <hr />
+
+                 <!-- /. ROW  -->
+
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Attendance Graph</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+		}
+
+		h1 {
+			text-align: center;
+			margin: 30px 0;
+		}
+
+		img {
+			display: block;
+			margin: 0 auto;
+			max-width: 100%;
+			height: auto;
+		}
+		#attendance-graph .present {
+      fill: green;
+    }
+    /* Style for absent dots */
+    #attendance-graph .absent {
+      fill: red;
+    }
+    /* Style for legend */
+    #legend {
+      display: flex;
+      align-items: center;
+      margin-left:1100px;
+      margin-bottom:10px;
+    }
+    #legend div {
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
+    .present-dot {
+      background-color: green;
+    }
+    .absent-dot {
+      background-color: red;
+	</style>
+</head>
+<h6><a href="{{course.get_course_url}}" style="color:blue;font-size:15px;text-decoration:none;margin-left:100px;">&#8592; Back</a></h6>
+
+<body>
+	<h1>Attendance Graph Of {{course.course}}</h1>
+	<div id="legend">
+    <div class="present-dot"></div>
+    <span>Present&nbsp;</span>
+    <div class="absent-dot"></div>
+    <span>Absent</span>
+  </div>
+	<img src="{% static graph_filename %}">
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance List</title>
+<style>
+        /* General styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Left column styles */
+        .present-col {
+            width: 50%;
+            padding-right: 30px;
+            box-sizing: border-box;
+        }
+
+        .present-heading {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: green;
+            text-shadow: 2px 2px 0 #ccc;
+        }
+
+        .present-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            background-color: #e9f9eb;
+        }
+
+        .present-name {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: #2e7d32;
+            text-shadow: 1px 1px 0 #ccc;
+        }
+
+        .present-status {
+            margin: 0;
+            font-size: 16px;
+            font-style: italic;
+            color: #4caf50;
+        }
+
+        /* Right column styles */
+        .absent-col {
+            width: 50%;
+            padding-left: 30px;
+            box-sizing: border-box;
+        }
+
+        .absent-heading {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            text-shadow: 2px 2px 0 #ccc;
+        }
+
+        .absent-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+            background-color: #fce4ec;
+        }
+
+        .absent-name {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: #c62828;
+            text-shadow: 1px 1px 0 #ccc;
+        }
+
+        .absent-status {
+            margin: 0;
+            font-size: 16px;
+            font-style: italic;
+            color: #f44336;
+        }
+    </style>
+
+</head>
+<body>
+{% for course in courses %}
+<h6><a href="{% url 'schedule:coursedetails'  c_slug=course.slug %}" style="color:blue;font-size:15px;text-decoration:none;margin-left:100px;">&#8592; Back</a></h6>
+{% endfor %}
+    <div class="container">
+
+        <div class="present-col">
+
+            <h2 class="present-heading">Present Students:</h2>
+            {% for attendance in present_attendances %}
+            <div class="present-card">
+                <h3 class="present-name">{{ attendance.student }}</h3>
+                <p class="present-status">Present</p>
+            </div>
+            {% empty %}
+            <p>No students were present for this class.</p>
+            {% endfor %}
+        </div>
+        <div class="absent-col">
+            <h2 class="absent-heading">Absent Students:</h2>
+            {% for attendance in absent_attendances %}
+            <div class="absent-card">
+                <h3 class="absent-name">{{ attendance.student }}</h3>
+                <p class="absent-status">Absent</p>
+            </div>
+            {% empty %}
+            <p>No students were absent for this class.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

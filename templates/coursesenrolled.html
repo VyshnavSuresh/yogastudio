@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+          <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+    <style>
+
+</style>
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+ <li>
+
+                            <a style="color: green;"><i class="fa fa-user" aria-hidden="true"></i>{{user.first_name}}</a>
+                           </li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu" >
+
+                    <li>
+                        <a style="color: green;" href= "studentdashboard"><i class="fa fa-desktop "></i>Student Dashboard<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                          <li>
+                                <a href= "{% url 'yogaapp:studentviewprofile' %}" style="color: green;">Profile</a>
+                                <a href= "{% url 'yogaapp:studentchangepassword' %}" style="color: green;">Change Password</a>
+                            </li></ul>
+                    </li>
+
+
+<!--                    <li>-->
+<!--                        <a href="#" style="color: green;"><i class="fa fa-edit "></i>Schedule</a>-->
+
+<!--                    </li>-->
+
+                    <li>
+                        <a href="#" style="color: green;"><i class="fa fa-sitemap "></i>My Courses<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+<!--                            <li>-->
+<!--                                <a href="#" style="color: green;">Daily Asanas</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="#" style="color: green;">Asana Library</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="#" style="color: green;">Purchase History</a>-->
+<!--                            </li>-->
+                            <li>
+                                <a href= "{% url 'yogaapp:coursesenrolled' %}" style="color: green;">Enrolled Courses</a>
+                            </li>
+                             <li>
+                                <a href= "{% url 'yogaapp:availablecourses' %}" style="color: green;">Available Courses</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+<!--                    <li>-->
+<!--                        <a href="#" style="color: green;"><i class="fa fa-bar-chart-o"></i>Certificates</a>-->
+<!--                    </li>-->
+ <li><a style="color: green;" href="{% url 'yogaapp:product' %}"><i class="fa fa-bar-chart-o"></i>Products</a></li>
+                    <li>
+                        <a href= "{% url 'yogaapp:feedback' %}" style="color: green;"><i class="fa fa-edit "></i>Feedback </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+
+<div>
+
+<h2>Enrolled Courses</h2>
+<hr/>
+
+<div class="featured">
+
+
+        <div class="row">
+
+         {% for i in c %}
+            <div id="1" class="item new col-md-4">
+               <a href="">
+
+
+                <div class="featured-item">
+
+                  <img src="{{i.course_image.url}}" alt="">
+                  <h2 style="color:black;">{{i.course}}</h2>
+                  <h6 style="color:black;">Rs.{{i.amount}}</h6>
+
+                    <h6><a href="{% url 'yogaapp:course_cancel' i.id %}">Cancel</a></h6>
+
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div>-->
+<!--    <table  align="center" border="1" style="width:100%;height:100%;font-family: Garamond, serif;border-collapse: collapse;color:black;">-->
+<!--        <br>-->
+<!--        <br>-->
+<!--        <tr>-->
+<!--            <th style="text-align:center;font-size:19px;">Course Name</th>-->
+
+<!--            <th style="text-align:center;font-size:19px;">Duration Of Course</th>-->
+<!--            <th style="text-align:center;font-size:19px;">Amount</th>-->
+<!--            <th style="text-align:center;font-size:19px;"><i class="fa fa-edit"></i></th>-->
+
+<!--&lt;!&ndash;            <th style="text-align:center;">Current Course Status</th>&ndash;&gt;-->
+<!--&lt;!&ndash;            <th style="text-align:center;"><i class="fa fa-edit"></i></th>&ndash;&gt;-->
+<!--        </tr>-->
+
+<!--<div class="class-des">-->
+<!--    {% for i in c %}-->
+<!--    <tr>-->
+<!--        <td align="center"><h4><a href="{{i.get_course_url}}">{{i.course}}</a></h4></td>-->
+
+<!--    <td align="center"><h4>{{i.duration}}</h4></td>-->
+<!--    <td align="center"><h4>{{i.amount}}</h4></td>-->
+<!--    <td align="center"><h4><a href="{% url 'yogaapp:course_cancel' i.id %}">Cancel</a></h4></td>-->
+
+<!--    </tr>-->
+<!--{% endfor %}-->
+<!--</div>-->
+<!--    </table>-->
+
+
+
+
+
+<!--                    </div>-->
+                </div>
+                  <hr />
+
+                 <!-- /. ROW  -->
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <script src="{% static 'js/sample_validations.js' %}"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

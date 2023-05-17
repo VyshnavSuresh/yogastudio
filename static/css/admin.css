@@ -1,0 +1,7 @@
+/* change the background color of the header */
+#header {
+    background-color: #333;
+    color: #fff;
+}
+
+/* change the background color of the sidebar */

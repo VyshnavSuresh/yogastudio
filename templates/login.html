@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>YOGASTUDIO</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <script src="{% static 'js/sample_validations.js' %}"></script>
+     <style type="text/css">
+#addcus {
+
+  height: 450px;
+  width: 600px;
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 55%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+
+
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-left:120px;
+  padding: 10px 100px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0077B5;
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.go a,
+.fb a {
+  text-decoration: none;
+  color: #0077B5;
+}
+
+.go a:hover,
+.fb a:hover {
+  text-decoration: underline;
+}
+
+
+                </style>
+</head>
+
+<body>
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">YOGASTUDIO</a></h1>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto " href="http://127.0.0.1:8000/">Explore</a></li>
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#about">About</a></li>
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#services">Premium Courses</a></li>
+
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#team">Team</a></li>
+            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#contact">Contact</a></li>
+      {% if user.is_authenticated %}
+            <li><a class="dropdown-item" href="{% url 'yogaapp:logout' %}">Logout</a></li>
+      {% else %}
+          <li><a class="nav-link scrollto" href="{% url 'yogaapp:insrtructorregistration' %}">Instructor Register</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'yogaapp:studentregistration' %}">Student Register</a></li>
+<li><a class="nav-link scrollto active" href="yogaapp:login">Sign In</a></li>
+       {% endif %}
+        </ul></nav>
+</div>
+    </div>
+  </header>
+               <div class="content">
+                         {% for msg in messages %}
+                   <div class="alert alert-success alert-dismissible fade show" style="text-align:center;" role="alert">
+                       {{ msg }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+                       {% endfor %}
+<form action="" id="addcus" method="post">
+    {% csrf_token %}
+
+  <h2 style="text-align:center;">Login Here</h2>
+  <label>Username</label>
+<input type="text" name="email" required="" placeholder="Enter Your Email">
+    <label>Password</label>
+
+                        <input type="password" placeholder="Enter Password" name="password" required="">
+    <button  type="submit" name="submit" value="Login" >Log In</button>
+    <div class="social">
+    <div class="go"><a href="{% url 'yogaapp:passwd_email' %}">Forgot Password?</a></div>
+    <div class="fb"> Dont have an account?<a href="{% url 'yogaapp:studentregistration' %}">SIGN UP</a></div></div>
+</form>
+                </div>
+            </div>
+
+ <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+ <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+ <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+ <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+ <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+ <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+ <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/sample_validations.js' %}"></script>
+</body>
+</html>
+<script language="JavaScript" type="text/javascript">
+
+
+</script>

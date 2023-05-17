@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+<style type="text/css">
+
+        input[type=text]{
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+       select{
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        input[type=password]{
+            width:40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+
+        }
+        input[type=email]{
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+
+        }
+
+        input[type=submit]
+        {
+            width: 20%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+
+        }
+
+  .course-name {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        color: #333;
+        margin-bottom: 1em;
+    }
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+		h1 {
+			text-align: center;
+			color: #333;
+		}
+		img {
+			display: block;
+			margin: 0 auto;
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			object-fit: cover;
+			object-position: center;
+		}
+		.container {
+			max-width: 850px;
+			margin: 0 auto;
+			padding: 20px;
+			margin-top:50px;
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+		}
+		.name {
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 0;
+			color: #333;
+		}
+		.description {
+			text-align: center;
+			margin-top: 10px;
+			margin-bottom: 30px;
+			color: #666;
+		}
+		.info {
+			margin-top: 30px;
+			margin-bottom: 30px;
+			color: #333;
+		}
+		.info ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.info ul li {
+			display: inline-block;
+			margin-right: 20px;
+			font-size: 16px;
+			color: #666;
+		}
+		.info ul li:last-child {
+			margin-right: 0;
+		}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    background-color: transparent;
+    color: green;
+}
+
+
+    </style>
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'yogaapp:studentdashboard' %}" class="btn btn-link" ><i class="fa fa-arrow-left"></i>Back</a></li>
+
+                        <li class="profile-pic">
+                            <img src="{{user.student_image.url}}">
+
+                        </li>
+                         <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: green;">{{ user.first_name }} <span class="caret"></span></a>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="{% url 'yogaapp:studentviewprofile' %}" style="color: green;">Profile</a></li>
+    <li><a href="{% url 'yogaapp:studentchangepassword' %}" style="color: green;">Change Password</a></li>
+  </ul>
+</li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+
+
+
+                    <div class=" col-md-6 ml-auto mr-auto ">
+                                <form class="search-form" action="{% url 'search_app:SearchResults' %}" method="GET">
+    <input type="text" placeholder="Search courses.." name="q">
+    <button type="submit" class="btn btn-success">Search</button>
+</form>
+                            </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+
+
+        <!-- /. NAV SIDE  -->
+
+                    <div class="col-md-12">
+
+
+
+	<div class="container">
+		<img src="{{user.student_image.url}}" alt="Profile Picture">
+		<h1 class="name">{{ins.first_name}}&nbsp;{{ins.last_name}}</h1>
+		<div class="info">
+			<ul>
+				<li>Email: {{request.user.username}}</li>
+				<li>Contact Number: {{user.phone}}</li>
+				<li>DOJ:{{request.user.date_joined}}</li>
+			</ul><br>
+			<ul><br>
+								<li style="margin-left:150px;"></li>
+
+	<li><a style="text-decoration:none; background-color:  #008CBA; color: white; padding: 10px 15px; border: none; cursor: pointer; border-radius: 5px; margin-left: 150px;" class="btn" href= "studentupdate">Update Profile</a></li>
+		</ul>
+
+		</div>
+	</div>
+
+                </div>
+                  <hr />
+
+
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <script src="{% static 'js/sample_validations.js' %}"></script>
+
+</body>
+</html>

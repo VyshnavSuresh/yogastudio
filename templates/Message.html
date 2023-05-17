@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+    <style>
+.table-card {
+
+       width:70%;
+       margin: 0 auto; /* Added */
+float: none; /* Added */
+margin-bottom: 10px; /* Added */
+
+
+      background: white;
+      border-radius: 2px;
+
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .table-card .header {
+      line-height: 64px;
+      padding-left: 24px;
+      padding-right: 14px;
+    }
+
+    .table-card .header .title {
+      font-size: 20px;
+    }
+
+    .table-card .header .actions {
+      float: right;
+    }
+
+    .table-card .header .actions a {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 24px;
+      padding-left: 24px;
+    }
+
+    .table-card .table {
+      padding: 0;
+      margin: 0;
+    }
+
+    .table-card .table table,
+    .table-card .table table tr,
+    .table-card .table table > thead > tr > th,
+    .table-card .table table > tbody > tr > td {
+      padding: 0;
+      margin: 0;
+    }
+
+    .table-card .table table > thead > tr > th {
+      line-height: 56px;
+      color: rgba(0, 0, 0, 0.54)
+    }
+
+    .table-card .table table > tbody > tr > td {
+      line-height: 48px;
+      word-wrap: break-word;
+    }
+
+    .table-card .table table > thead > tr > th:first-child,
+    .table-card .table table > tbody > tr > td:first-child {
+      padding-left: 150px;
+    }
+
+    .table-card .table table > thead > tr > th:last-child,
+    .table-card .table table > tbody > tr > td:last-child {
+      padding-right: 5px;
+    }
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+}
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    background-color: transparent;
+    color: green;
+}
+a.live-dot::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 5px;
+
+}
+
+</style>
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+<li> <a style="color: green;" class="live-dot" href="{{course.get_course_url}}">{{course.course}}</a></li>
+
+                        <li class="profile-pic">
+                            <img src="{{user.student_image.url}}">
+
+                        </li>
+                              <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color: green;">{{ user.first_name }} <span class="caret"></span></a>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="{% url 'yogaapp:studentviewprofile' %}" style="color: green;">Profile</a></li>
+    <li><a href="{% url 'yogaapp:studentchangepassword' %}" style="color: green;">Change Password</a></li>
+  </ul>
+</li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu" >
+
+
+
+
+                   <li>
+                    <a  href="{% url 'yogaapp:aboutcourse' c_id=course.pk %}" style="color: green;"><i class="fa fa-book"></i>About Course</a></li>
+
+ <li>
+                    <a  href="{% url 'schedule:live_classes' c_id=course.pk %}" style="color: green;"><i class="fa fa-video-camera"></i>Live Class</a></li>
+
+
+                    <li><a  href="{% url 'schedule:student_attendance' c_id=course.pk %}" style="color: green;"><i class="fa fa-check-circle"></i>Attendance</a></li>
+                    <li><a  href="{% url 'schedule:attendance_graph' c_id=course.pk %}" style="color: green;"><i class="fa fa-star"></i>Attendance Graph</a></li>
+ <li>
+
+                                <a href= "{% url 'chat:sentmsg' c_id=course.pk %}" style="color: green;"><i class="fa fa-envelope"></i>Contact instructor</a>
+                            </li>
+<li>
+    <a href="{% url 'schedule:generate_certificate' course.pk %}" style="color: green;"><i class="fa fa-bar-chart-o"></i>Certificate</a>
+</li>
+
+                    <li>
+                        <a href= "{% url 'yogaapp:availablecourses' %}"  style="color: green;"><i class="fa fa-sitemap "></i>Available Courses</a>
+
+                    </li>
+
+
+
+<li>
+                        <a href="{% url 'yogaapp:feedback' %}" style="color: green;"><i class="fa fa-edit "></i>Feedback </a>
+                    </li>
+                     <li>
+
+                         <a href="{% url 'posecollection:pose_list' %}" style="color: green;"><i class="fa fa-adjust"></i>Pose Estimation</a>
+                    </li>
+                                        <li><a style="color: green;" href="{% url 'yogaapp:product' %}"><i class="fa fa-bar-chart-o"></i>Products</a></li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+
+
+
+{% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+      <div class="{{ message.tags }}" style="color: black; padding: 10px; margin-bottom: 10px;">
+        {% if message.tags %}
+          {{ message }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    setTimeout(function() {
+      var messages = document.querySelector('.messages');
+      messages.style.display = 'none';
+    }, 5000); // hide messages after 5 seconds
+  </script>
+{% endif %}
+
+<form method="post" action="">
+    {% csrf_token %}
+     <div class="table-card p-2 flex" >
+          <div class="header">
+            <span class="title">Contact Instructor&nbsp;-&nbsp;{{course.course}}&nbsp;{{ins.first_name}}</span><hr/>
+    <label>Type in your Message</label>
+    <br>
+    <textarea cols="50" rows="2" name="message">
+
+    </textarea>
+    <br>
+    <input type="submit" value="Send" class="btn btn-success" style="margin-left:150px;">
+
+          </div></div>
+</form>
+
+
+</div>
+
+<!--</div>-->
+
+
+
+
+
+                    </div>
+                </div>
+                  <hr />
+
+                 <!-- /. ROW  -->
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/sample_validations.js' %}"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Records</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #1e90ff;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 2px solid #1e90ff;
+        }
+        th, td {
+            text-align: center;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            color: #444;
+        }
+        th {
+            background-color: #1e90ff;
+            color: #fff;
+            text-align:center;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .present {
+            color: green;
+            font-weight: bold;
+        }
+        .absent {
+            color: red;
+            font-weight: bold;
+        }
+         .no-attendance {
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+<h6><a href="{{course.get_course_url}}" style="color:blue;font-size:15px;text-decoration:none;margin-left:100px;">&#8592; Back</a></h6>
+
+    <h1 style="text-align:center;">Attendance Records Of {{course.course}}</h1>
+    {% if course_attendance %}
+    <table>
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for attendance in course_attendance %}
+            <tr>
+                <td>{{ attendance.class_schedule.course.course }}</td>
+                <td>{{ attendance.class_schedule.start_time|date:"M d, Y" }}</td>
+                <td>{{ attendance.class_schedule.start_time|time:"h:i A" }}-{{ attendance.class_schedule.end_time|time:"h:i A" }}</td>
+                <td class="{% if attendance.is_present %}present{% else %}absent{% endif %}">{{ attendance.is_present }}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% else %}
+        <p class="no-attendance">No attendance records found for this course.</p>
+
+{% endif %}
+
+</body>
+</html>

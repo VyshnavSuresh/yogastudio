@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+    <style>
+
+</style>
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+
+                            <a style="color: green;"><i class="fa fa-user" aria-hidden="true"></i>{{user.first_name}}</a>
+                           </li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu" >
+
+                    <li>
+                        <a style="color: green;" href= "studentdashboard"><i class="fa fa-desktop "></i>Student Dashboard<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                            <li>
+
+                                <a href= "{% url 'yogaapp:studentviewprofile' %}" style="color: green;">Profile</a>
+                                <a href= "{% url 'yogaapp:studentchangepassword' %}" style="color: green;">Change Password</a>
+                            </li></ul>
+                    </li>
+
+
+<!--                    <li>-->
+<!--                        <a href="#" style="color: green;"><i class="fa fa-edit "></i>Schedule</a>-->
+
+<!--                    </li>-->
+
+                    <li>
+                        <a href="#" style="color: green;"><i class="fa fa-sitemap "></i>My Courses<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+<!--                            <li>-->
+<!--                                <a href="#" style="color: green;">Daily Asanas</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="#" style="color: green;">Asana Library</a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="#" style="color: green;">Purchase History</a>-->
+<!--                            </li>-->
+
+                             <li>
+                                <a href= "{% url 'yogaapp:availablecourses' %}" style="color: green;">Available Courses</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+<!--                    <li>-->
+<!--                        <a href="#" style="color: green;"><i class="fa fa-bar-chart-o"></i>Certificates</a>-->
+<!--                    </li>-->
+ <li><a style="color: green;" href="{% url 'yogaapp:product' %}"><i class="fa fa-bar-chart-o"></i>Products</a></li>
+                    <li>
+                        <a href= "{% url 'yogaapp:feedback' %}" style="color: green;"><i class="fa fa-edit "></i>Feedback </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+<span style="color:red">Once the course payment is done you cannot cancel the course</span>
+                        <h2>Order Summary</h2>
+<hr/>
+
+
+                    <div class="table-card p-2 flex" >
+          <div class="header">
+
+
+
+            <table style="margin-bottom:50px;">
+              <tr>
+                <td><img src="{{course.course_image.url}}" alt="" style="width:300px;height:250px;"></td>
+                <td style="padding-left:25px;padding-bottom:10px;"><b style="font-size:25px;">{{course.course}}</b><br><br>
+                Amount:&nbsp;&nbsp;{{course.amount}}<br><br>
+                    Description:&nbsp;&nbsp;{{course.desc}}<br><br>
+                    Start Date:&nbsp; &nbsp;{{course.start_date}}<br><br>
+                    Expected End Date:&nbsp;&nbsp; {{course.end_date}}<br><br>
+                    Instructor for the course:&nbsp;&nbsp;{{course.user_id}}
+
+                </td>
+
+              </tr>
+
+
+            </table></div></div>
+
+ <form method="post" id="myform">
+     {% csrf_token %}
+                        <button type="submit" id="rzp-button1" style="margin-left:600px;" class="btn btn-primary"><span style="color:white;">Total Amount&nbsp;:&nbsp;{{course.amount}}&nbsp;&nbsp;||</span>Continue to Payment</button>
+
+ </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+                  <hr />
+
+                 <!-- /. ROW  -->
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/sample_validations.js' %}"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "rzp_test_K8GjSL7aMH5Enx", // Enter the Key ID generated from the Dashboard
+    "amount": "{{razoramount}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "YOGASTUDIO",
+    "description": "Purchase Product",
+    "order_id": "{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+<!--        alert(response.razorpay_payment_id);-->
+<!--        alert(response.razorpay_order_id);-->
+<!--        alert(response.razorpay_signature)-->
+             console.log("success")
+             var form = document.getElementById("myform");
+             var a = response.razorpay_payment_id;
+
+
+
+             window.location.href = 'http://127.0.0.1:8000/payment_done_course?order_id=${response.razorpay_order_id}&user_id=${response.USER}&payment_id='+a
+
+    },
+
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+
+        alert(response.error.description);
+
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    console.log("button click");
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+  <title>YOGASTUDIO</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Green - v4.8.0
+  * Template URL: https://bootstrapmade.com/green-free-one-page-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  <style>
+.cart-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-icon .badge {
+    position: absolute;
+    top: 0;
+    right: -8px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 3px 6px;
+    border-radius: 10px;
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: none;
+  color: #333333;
+  background: linear-gradient(to bottom, #3b97e3, #096dd9);
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+<!--  margin-left:15px;-->
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+}
+
+.button i.fa {
+  margin-right: 5px;
+}
+
+.button:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.button:hover a {
+  color: #ffffff;
+}
+
+.button a {
+  text-decoration: none;
+  color: #333333;
+}
+.wishlist-icon {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #cccccc;
+  font-size: 16px;
+  text-decoration: none;
+}
+.wishlist-icon.wishlist-active{
+  color: red;
+}
+
+.wishlist-icon:hover {
+  background-color: #f8f8f8;
+  color: #ff69b4;
+}
+
+.wishlist-icon i.fa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.pagination li {
+  margin-right: 5px;
+}
+
+.pagination .page-link {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 50px;
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination .page-link:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.pagination .active .page-link {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination .disabled .page-link {
+  color: #ccc;
+  background-color: #fff;
+  border-color: #ddd;
+  pointer-events: none;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.search-form input[type="text"] {
+    width: 70%;
+    padding: 2px 20px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.search-form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#filters {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+#filters label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+#filters select {
+  padding: 1px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#filters button {
+  padding: 2px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#filters button:hover {
+  background-color: #0056b3;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+
+
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo me-auto"><a href="http://127.0.0.1:8000/">YOGASTUDIO</a></h1>
+        <form class="search-form" action="{% url 'yogaapp:search' %}" method="GET">
+    <input type="text" class="search-input" name="q" placeholder="Search products...">
+    <button type="submit" class="search-button"><i class="fa fa-search"></i></button>
+</form>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link" href= "{% url 'yogaapp:studentdashboard' %}">Dashboard</a></li>
+                    <li><a class="nav-link scrollto active" href="http://127.0.0.1:8000/product">Products</a></li>
+<li><a class="nav-link scrollto" href="orders">Orders</a></li>
+            <li><a class="nav-link scrollto" href="view_wishlist">WishList</a></li>
+          <a href="{% url 'yogaapp:cart' %}">
+    <div class="cart-icon">
+        <i class="fa fa-shopping-cart" style="font-size:2em;"></i>
+        {% if num_items %}
+            <span class="badge">{{ num_items }}</span>
+        {% endif %}
+    </div>
+</a>
+        </ul>
+      </nav>
+    </div>
+  </header>
+              {% for msg in messages %}
+                   <div class="alert alert-success alert-dismissible fade show" style="text-align:center;" role="alert">
+                       {{ msg }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+                       {% endfor %}
+  <main id="main">
+    <!-- products.html -->
+
+<div class="featured-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <div class="section-heading">
+          <div class="line-dec"></div>
+          <h1>Featured Items</h1>
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <div id="filters" class="button-group">
+          <form id="filter-form" action="{% url 'yogaapp:product' %}" method="GET">
+            <input type="hidden" name="page" value="1">
+
+            <select id="price-range-select" name="price_range">
+              <option value="">All prices</option>
+<!--              <option value="0-50">Up to &#8377;50</option>-->
+              <option value="50-100">&#8377;50 to &#8377;100</option>
+              <option value="100-200">&#8377;100 to &#8377;200</option>
+              <option value="200-100000000">Over &#8377;200</option>
+            </select>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('price-range-select').addEventListener('change', function() {
+    document.getElementById('filter-form').submit();
+  });
+</script>
+
+
+<div class="featured container no-gutter">
+        <div class="row">
+        {% for prod in products %}
+            <div id="1" class="item new col-md-4">
+               <a href="{% url 'yogaapp:singleproduct' prod.id %}">
+                <div class="featured-item">
+<a href="{% url 'yogaapp:add_wishlist' prod.id %}" class="wishlist-icon {% if prod.id in wishlist_items %}wishlisted{% endif %}">
+    <i class="fa fa-heart" {% if prod.id in wishlist_items %}style="color: red;"{% endif %}></i>
+</a>
+
+
+
+                    <a href="{% url 'yogaapp:singleproduct' prod.id %}"><img src="{{prod.product_image.url}}" alt="" ></a>
+                  <h4>{{prod.name}}</h4>
+                  <h6>{{prod.price}}</h6><br>
+                      {% if prod.stock > 0 %}
+                    <button class="button"><i class="fa fa-shopping-cart"></i><a href="{% url 'yogaapp:addcart' prod.id %}"><span style="color:black">Add to cart </span></a></button>
+</h6>{% else %}
+                  <h4>Out of Stock</h4>
+{% endif %}
+        </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+   {% if products.has_other_pages %}
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        {% if products.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ products.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
+        {% for i in products.paginator.page_range %}
+            {% if products.number == i %}
+                <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if products.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ products.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>YOGASTUDIO</h3>
+      <p>Come and live with Yoga</p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>YOGASTUDIO</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profile Update page</title>
+  <link rel="stylesheet" href="style.css">
+     <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+    <style>
+    #quiz-form{
+    border-radius: 5px;
+    border: 2px solid rgb(241, 238, 238);
+    width: 750px;
+    background-color: white;
+    padding: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+  }
+  #submit-btn{
+  margin-top: 24px;
+
+
+  }
+  input[type=submit] {
+    width: 22%;
+    background-color: #138bec;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#img-satya{
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+.form-field{
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  padding: 1%;
+}
+.form-label{
+  margin-bottom: 5px;
+}
+#img-container {
+  position: relative;
+  display: inline-block;
+}
+
+#img-satya {
+  display: block;
+  width: 200px; /* set the width and height of your image */
+  height: 200px;
+}
+
+input[type="file"] {
+  border: none;
+  outline: none;
+}
+
+#upload-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#upload-button-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: #fff;
+  font-size: 30px;
+}
+
+#img-container:hover #upload-button {
+  opacity: 0.7;
+}
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#img-container {
+  position: relative;
+  display: inline-block;
+}
+
+#img-satya {
+  display: block;
+  width: 200px;
+  height: 200px;
+}
+
+#file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+#upload-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#upload-button:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+
+</style>
+</head>
+<body>
+<div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="{% url 'yogaapp:studentviewprofile' %}" class="btn btn-link" ><i class="fa fa-arrow-left"></i>Back</a></li>
+
+
+                        <li class="profile-pic">
+                            <img src="{{std.student_image.url}}">
+
+                        </li>
+                        <li>
+                        <a style="color: green;"> {{std.first_name}}</a></li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+  <div class="quiz-wrapper" >
+       <form action=""  id="quiz-form" onsubmit="return fnameValidation() lnameValidation() emailValidation() phoneValidation() passwordValidation() cpasswordValidation()" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+     <h3 style="text-align: center;">Edit Profile</h3>
+
+
+
+<div id="img-container" style="margin-left:250px;">
+  <img id="img-satya" src="{{ std.student_image.url }}" alt="">
+  <label id="upload-button" for="file-input"><i class="fa fa-camera"></i></label>
+  <input id="file-input" type="file" name="student_image">
+</div>
+
+
+      <p class="form-label"><br>First Name:</p>
+        <input class="form-field" type="text"  name="firstname" value="{{std.first_name}}" id="ffname" placeholder="Enter First Name" onkeyup="fnameValidation(this)">
+      <span id="name" style="font-size:12px;margin-top:-5px;" class="text-danger"></span>
+
+        <p class="form-label"><br>Last Name:</p>
+          <input class="form-field" type="text"  name="lastname" value="{{std.last_name}}" id="llname"  placeholder="Enter Last Name" onkeyup="lnameValidation(this)" required>
+                    <span id="names" style="font-size:12px;margin-top:-5px;" class="text-danger"></span>
+
+        <p class="form-label"><br>Phone Number:</p>
+           <input class="form-field" type="number" id="phone" name="phone" value="{{std.phone}}" placeholder="Enter Your Phone Number" onkeyup="phoneValidation(this)" required>
+         <span id="pho" style="font-size:12px;margin-top:-5px;" class="text-danger font-weight-bold"></span>
+        <div id="submit-btn">
+          <input type="submit" style="margin-left:271px;" name="submit"   value="Update" class="btn btn-primary">
+        </div>
+      </form>
+  </div></div>
+  </body>
+<script type="text/javascript">
+  function fnameValidation(inputTxt){
+    var regx = /^[a-zA-Z]+$/;
+    var textField = document.getElementById("name");
+    if(inputTxt.value != '' ){
+        if(inputTxt.value.length >= 4){
+            if(inputTxt.value.match(regx)){
+                textField.textContent = '';
+                textField.style.color = "green";
+            }else{
+                textField.textContent = 'only characters allowed';
+                textField.style.color = "red";
+            }
+        }else{
+            textField.textContent = 'your input mut me more than two chracters';
+            textField.style.color = "red";
+        }
+    }else{
+        textField.textContent = 'your input is empty';
+        textField.style.color = "red";
+    }
+}
+
+function lnameValidation(inputTxt){
+
+    var regx = /^[a-zA-Z\s, ]+$/;
+    var textField = document.getElementById("names");
+
+    if(inputTxt.value != '' ){
+
+        if(inputTxt.value.length >= 1){
+
+            if(inputTxt.value.match(regx)){
+                textField.textContent = '';
+                textField.style.color = "green";
+
+            }else{
+                textField.textContent = 'only characters allowed';
+                textField.style.color = "red";
+            }
+        }else{
+            textField.textContent = 'your input mut me more than two chracters';
+            textField.style.color = "red";
+        }
+    }else{
+        textField.textContent = 'your input is empty';
+        textField.style.color = "red";
+    }
+}
+
+function emailValidation(inputTxt){
+    // ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$
+    var regx = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    var textField = document.getElementById("mail");
+
+    if(inputTxt.value != '' ){
+        if(inputTxt.value.match(regx)){
+            textField.textContent = '';
+            textField.style.color = "green";
+        }else{
+            textField.textContent = 'email is not valid!!!';
+            textField.style.color = "red";
+        }
+    }else{
+        textField.textContent = 'your input is empty';
+        textField.style.color = "red";
+    }
+}
+
+function phoneValidation(inputTxt){
+
+    var regx = /^[6-9][0-9]{9}$/;
+    var textField = document.getElementById("pho");
+
+    if(inputTxt.value != '' ){
+        if(inputTxt.value.match(regx)){
+            textField.textContent = '';
+            textField.style.color = "green";
+            }else{
+                textField.textContent = '**not valid phone number';
+                textField.style.color = "red";
+            }
+    }else{
+        textField.textContent = 'your input is empty';
+        textField.style.color = "red";
+    }
+}
+
+function passwordValidation(inputTxt){
+
+    var regx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}/;
+    var textField = document.getElementById("pa1");
+
+    if(inputTxt.value != '' ){
+            if(inputTxt.value.match(regx)){
+                textField.textContent = '';
+                textField.style.color = "green";
+
+            }else{
+                textField.textContent = 'Must contain at least one number and one uppercase and lowercase letter and aleast 5 characters';
+                textField.style.color = "red";
+            }
+    }else{
+        textField.textContent = 'your input is empty';
+        textField.style.color = "red";
+    }
+}
+
+
+function cpasswordValidation(inputTxt){
+
+    var regx =  document.getElementById("pass1").value;
+    var regy =  document.getElementById("pass2").value;
+    var textField = document.getElementById("pa1");
+    var textField = document.getElementById("pa2");
+
+    if(inputTxt.value != '' ){
+            if(regx == regy){
+                textField.textContent = '';
+                textField.style.color = "green";
+
+            }else{
+                textField.textContent = 'Passwords should match';
+                textField.style.color = "red";
+            }
+        }else{
+            textField.textContent = '';
+            textField.style.color = "red";
+        }
+}
+
+
+</script>
+</html>

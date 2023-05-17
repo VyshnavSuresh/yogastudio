@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+
+    <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+
+
+
+
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <title>YOGASTUDIO</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+    <script src="{% static 'js/sample_validations.js' %}"></script>
+<style>
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-title {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1.5rem;
+}
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+a.live-dot::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 5px;
+
+}
+
+    </style>
+
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" style="color: green; font-size: 30px;"></i>&nbsp;YOGASTUDIO</a>
+
+
+
+                </div>
+                <div class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+<li><a  class="live-dot" style="color:green;">{% for course in courses %}{{course.course}}{% endfor %}</a></li>
+
+                    <li class="profile-pic">
+                            <img src="{{ins.instructor_image.url}}">
+
+                        </li>
+
+                        <li>
+                        <a style="color: green;"> {{ins.first_name}}</a></li>
+                        <li><a href="{% url 'yogaapp:logout' %}"  style="color: green;">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu" >
+
+                    <li>
+                        <a style="color: green;" href= "{% url 'yogaapp:instructordashboard' %}"><i class="fa fa-desktop "></i>Instructor Dashboard<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+<li>
+                                <a href= "{% url 'yogaapp:instructorviewprofile' %}" style="color: green;">Profile</a>
+                                <a href= "{% url 'yogaapp:instructorchangepassword' %}" style="color: green;">Change Password</a>
+                            </li></ul>
+                    </li>
+
+
+
+
+                    <li>
+                    <a href= "{% url 'yogaapp:instructorallotedstudents' %}" style="color: green;"><i class="fa fa-sitemap "></i>Course Details</a>
+
+                    </li>
+
+{% for course in courses %}
+                        <li><a href="{% url 'schedule:allotclass' c_slug=course.slug %}" style="color: green;"><i class="fa fa-clock-o "></i>Schedule a Class</a></li>
+                                                <li><a href="{% url 'schedule:coursedetails' c_slug=course.slug %}" style="color: green;"><i class="fa fa-dashboard "></i>View Live Session</a></li>
+                    <li>
+                        <a href="{% url 'schedule:course_dates' course.id %}" style="color: green;"><i class="fa fa-desktop "></i>Attendance Records </a>
+                    </li>
+                    {% endfor %}
+
+
+
+
+                      <li>
+                        <a href="{% url 'yogaapp:addvideo' %}" style="color: green;"><i class="fa fa-desktop "></i>Add Videos </a>
+                    </li>
+                     <li>
+                        <a href="{% url 'posecollection:capture_pose' %}" style="color: green;"><i class="fa fa-camera"></i>Add Pose</a>
+                    </li>
+                     <li>
+                        <a href="{% url 'yogaapp:instructorviewfeedback' %}" style="color: green;"><i class="fa fa-edit "></i>Feedbacks </a>
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+        </nav>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+<h2>Feedbacks</h2>
+<hr/>
+<div class="row">
+    <!-- Create card view for feedbacks -->
+    {% for i,std in std_feed %}
+    <div class="col-md-4">
+        <div class="card my-3">
+          <div class="card-body">
+            <h5 class="card-title">{{std.first_name}}&nbsp;{{std.last_name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ i.feedbackdate }}</h6>
+            <p class="card-text">{{ i.feedback }}</p>
+          </div>
+        </div>
+    </div>
+    {% empty %}
+      <p style="text-align:center">No feedbacks found.</p>
+    {% endfor %}
+</div>
+</div>
+                </div>
+                </div>
+                  <hr />
+
+    </div>
+            </div>
+        </div>
+
+    <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+
+</body>
+</html>

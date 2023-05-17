@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+  <title>YOGASTUDIO</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <style>
+.cart-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-icon .badge {
+    position: absolute;
+    top: 0;
+    right: -8px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 3px 6px;
+    border-radius: 10px;
+    background-color: #FF0000;
+    color: #FFFFFF;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: none;
+  color: #333333;
+  background: linear-gradient(to bottom, #3b97e3, #096dd9);
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+<!--  margin-left:15px;-->
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+}
+
+.button i.fa {
+  margin-right: 5px;
+}
+
+.button:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.button:hover a {
+  color: #ffffff;
+}
+
+.button a {
+  text-decoration: none;
+  color: #333333;
+}
+.wishlist-icon {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #cccccc;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.wishlist-icon:hover {
+  background-color: #f8f8f8;
+  color: #ff69b4;
+}
+
+.wishlist-icon i.fa {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+  </style>
+</head>
+<body>
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo me-auto"><a href="http://127.0.0.1:8000/">YOGASTUDIO</a></h1>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link" href= "{% url 'yogaapp:studentdashboard' %}">Dashboard</a></li>
+<li><a class="nav-link scrollto " href="http://127.0.0.1:8000/product">Products</a></li>
+<li><a class="nav-link scrollto" href="orders">Orders</a></li>
+            <li><a class="nav-link scrollto active" href="view_wishlist">WishList</a></li>
+          <a href="{% url 'yogaapp:cart' %}">
+    <div class="cart-icon">
+        <i class="fa fa-shopping-cart" style="font-size:2em;"></i>
+        {% if num_items %}
+            <span class="badge">{{ num_items }}</span>
+        {% endif %}
+    </div>
+</a>
+        </ul>
+      </nav>
+    </div>
+  </header>
+                     {% for msg in messages %}
+                   <div class="alert alert-success alert-dismissible fade show" style="text-align:center;" role="alert">
+                       {{ msg }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+                       {% endfor %}
+  <main id="main">
+    <div class="featured-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>Wishlisted Items</h1>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <div id="filters" class="button-group">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="featured container no-gutter">
+    <div class="row">
+        {% if not wishlist %}
+            <div style="height:300px;text-align: center;">
+                <h2 style="font-family: sans-serif;color: rgb(246,86, 12);">Your Wishlist is Empty !!!!</h2><br>
+                <div class="button-area">
+                    <a href="http://127.0.0.1:8000/product" style="font-family: sans-serif;color: rgb(246,86, 12);">Continue Shopping</a>
+                </div>
+            </div>
+        {% else %}
+            {% for i in wishlist %}
+                <div class="col-md-4">
+                    <div class="featured-item">
+                        <a href="{% url 'yogaapp:de_wishlist' i.id %}" class="wishlist-icon"><i class="fa fa-heart" style="color: red;"></i></a>
+                        <a href="{% url 'yogaapp:singleproduct' i.id %}"><img src="{{i.product.product_image.url}}" alt=""></a>
+                        <h4>{{i.product.name}}</h4>
+                        <h6>{{i.product.price}}</h6><br>
+                        {% if i.product.stock > 0 %}
+                            <button class="button"><i class="fa fa-shopping-cart"></i><a href="{% url 'yogaapp:addcart' i.id %}"><span style="color:black">Add to cart </span></a></button>
+                        {% else %}
+                            <h4>Out of Stock</h4>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                    </div>
+                    <div class="row">
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+
+    <div class="page-navigation">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Featred Page Ends Here -->
+
+
+
+  </main>
+  <footer id="footer">
+    <div class="container">
+      <h3>YOGASTUDIO</h3>
+      <p>Come and live with Yoga</p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>YOGASTUDIO</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>

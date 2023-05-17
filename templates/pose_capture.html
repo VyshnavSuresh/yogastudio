@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+      <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<a href="{% url 'yogaapp:instructordashboard' %}" class="btn btn-link" style="margin-left:50px;margin-top:30px;"><i class="fa fa-arrow-left"></i>Back</a>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="card" style="margin-left:20px;">
+            <div class="card-header">
+              <h3 style="text-align:center;">Pose Voice Memo</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="asana_name">Enter the name of the Asana:</label>
+                        <input type="text" class="form-control" id="asana_name" name="asana_name" required>
+                    </div>
+<br>
+                    <div class="form-group">
+                                          <label>Record Audio:</label><br>
+
+                        <button type="button" class="btn btn-primary" onclick="startRecording()" required>Start Recording</button>
+                        <button type="button" class="btn btn-danger" onclick="stopRecording()" disabled required>Stop Recording</button>
+                    </div>
+<br>
+                    <div class="form-group">
+                        <label for="audio_file">Upload Recorded Audio:</label>
+                        <input type="file" class="form-control-file" id="audio_file" name="audio_file" required><br>
+                    </div>
+
+                    <button type="submit" style="margin-left:100px;" class="btn btn-primary" required>Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+  let recorder;
+  let chunks = [];
+
+  function startRecording() {
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+        recorder = new MediaRecorder(stream);
+        recorder.ondataavailable = e => chunks.push(e.data);
+        recorder.start();
+        document.querySelector('button[onclick="startRecording()"]').disabled = true;
+        document.querySelector('button[onclick="stopRecording()"]').disabled = false;
+      });
+  }
+
+  function stopRecording() {
+    recorder.onstop = e => {
+      const blob = new Blob(chunks, { type: recorder.mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'recorded_audio.webm';
+      a.click();
+      document.querySelector('#audio_file').files = [new File([blob], 'recorded_audio.webm', { type: recorder.mimeType })];
+      document.querySelector('button[onclick="startRecording()"]').disabled = false;
+      document.querySelector('button[onclick="stopRecording()"]').disabled = true;
+      chunks = [];
+    };
+    recorder.stop();
+  }
+</script>
+
+</body>
+</html>

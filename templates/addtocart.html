@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>YOGASTUDIO</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+
+</head>
+
+<body>
+
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="http://127.0.0.1:8000/">YOGASTUDIO</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+
+
+          <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/product">
+            <-Back
+          </a></li>
+
+
+
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+
+  </header><!-- End Header -->
+
+
+<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+    <!-- Cart-Page -->
+    <div class="page-cart u-s-p-t-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+
+
+                        {% if not cart %}
+
+                    <div style="height:300px;text-align: center;">
+                          <h2 style="font-family: sans-serif;color: rgb(246,86, 12);">Your Cart is Empty !!!!</h2><br>
+                          <div class="button-area">
+                            <a href="{% url 'yogaapp:product' %}" style="font-weight:bold;color:rgb(240, 16, 16);">Continue Shopping</a>
+                            </div>
+                    </div>
+<!--                </div>-->
+                  {% else %}
+                        <!-- Products-List-Wrapper -->
+                        <div class="table-wrapper u-s-m-b-60">
+                            <table  style="width:100%">
+                                <tr ><h4 style="margin-left:525px;color:#000;font-weight:bold;">My Cart</h4></tr><br><br>
+                                <thead>
+                                    <tr >
+                                        <th style="color:red;font-size:17px;">Product</th>
+                                        <th style="color:red;font-size:17px;">Price</th>
+                                        <th style="color:red;font-size:17px;">Quantity</th>
+                                        <th style="color:red;font-size:17px;">Total</th>
+                                    </tr>
+                                </thead>
+                                <br>
+                                <tbody>
+
+                                    {% for i in cart %}
+                                    <tr>
+                                        <td><br><br>
+                                            <div>
+
+<!--                                                    <img src="{{i.product.img.url}}" alt="Product" href="http://127.0.0.1:8000/product/{{i.product.id}}" height="100px">-->
+
+                                                <h6><a href="{% url 'yogaapp:singleproduct' i.product.id %}">{{i.product.name}}</a></h6>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cart-price">
+                                                {{i.product.price}}
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="cart-quantity">
+                                                <div class="quantity">
+                                                    <input type="text" class="quantity-text-field" value="{{i.product_qty}}" readonly>
+                                                    <a class="plus-a" data-max="1000" href="{% url 'yogaapp:plusqty' i.id %}">&#43;</a>
+                                                    <a class="minus-a" data-min="1" href="{% url 'yogaapp:minusqty' i.id %}">&#45;</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cart-price">
+                                                {{i.price}}
+                                            </div>
+
+                                        </td>
+
+                                        <td>
+                                            <div class="action-wrapper">
+                                                <!-- <buttonclass="button button-outline-secondary fas fa-sync"></button> -->
+                                                <button class="add-to-cart-btn"><a href="{% url 'yogaapp:de_cart' i.id %}" style="font-size:18px;color:red;" >X</a></button>
+                                            </div>
+
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+<tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+                                    <tr>
+    <td></td></tr>
+
+
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+
+                                        <td>
+                                            <div class="cart-anchor-image">
+                                                <h6 style="color:red;font-size:17px;font-weight: bolder;">Grand Total:</h6>
+
+                                        </div>
+                                        </td>
+                                        <td>
+                                            <div class="cart-price" style="color:red;">
+                                                {{total}}
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table><br><br><br>
+                        </div>
+
+                        <div class="add-to-cart">
+
+                            <div class="add-to-cart">
+                                <button  style="background-color: #4CAF50;border: none;padding: 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 12px;"> <a href="http://127.0.0.1:8000/product" style="color:black;" >Continue Shopping</a></button>
+                                <button  style="background-color: #4CAF50;border: none;padding: 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;border-radius: 12px;"> <a href="{% url 'yogaapp:checkout' %}" style="color:black;" >Proceed to Checkout</a></button>
+                            </div>
+                        </div>
+
+                        {% endif %}
+                        <!-- Coupon /- -->
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+                	</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /Section -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>YOGASTUDIO</h3>
+      <p>Come and live with Yoga</p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>YOGASTUDIO</span></strong>. All Rights Reserved
+      </div>
+
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
